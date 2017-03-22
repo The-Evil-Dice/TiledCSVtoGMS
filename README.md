@@ -4,6 +4,9 @@
 
 Still does the same thing, but it's got a quickly thrown together GUI now, so just plug the arguments in and press convert.
 
+## Future Developments
+- Read the TMX file instead of the CSV, meaning it can just require a file and convert much more easily without arguments
+
 [Download](../master/TiledCSVtoGMS.jar)
 
 ## Arguments:
