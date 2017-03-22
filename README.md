@@ -19,4 +19,5 @@ I desperately needed this tool and nothing else seemed to work, so I just made i
 Make sure you have the file you want to convert in the same folder as the jar, for simplicity's sake. For example, if your isometric grid was 80x40, and your general largest tile height was 80x70, and your tileset had rows of 13 textures, and you had exported your layer to Layer2.csv and in Tiled it was 31 pixels higher than your Layer1...
 
 Open CMD, use CD commands until you locate the folder with the jar, then use
+
 ***java -jar TiledCSVToGMSTileList.jar 80 40 13 70 31 Layer2.csv***
