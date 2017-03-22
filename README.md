@@ -2,6 +2,8 @@
 
 Just a simple command line java tool with arguments to convert tile layers output to csv by Tiled into Gamemaker Studio 1.4's Isometric grid.
 
+[Download](../blob/master/TiledCSVtoGMS.jar)
+
 ## Arguments:
 - TileWidth
 - TileHeight
