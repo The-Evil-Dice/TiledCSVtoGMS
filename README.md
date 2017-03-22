@@ -22,7 +22,7 @@ Make sure you have the file you want to convert in the same folder as the jar, f
 
 Open CMD, use CD commands until you locate the folder with the jar, then use
 
-***java -jar TiledCSVToGMSTileList.jar 80 40 13 70 31 Layer2.csv***
+***java -jar TiledCSVtoGMS.jar 80 40 13 70 31 Layer2.csv***
 
 That'll make an output.txt file containing all the tiles in that layer for you to simply paste into your room.gmx
 
