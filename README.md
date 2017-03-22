@@ -53,6 +53,6 @@ Example:
     <tile bgName="Tileset" x="120" y="220" w="80" h="70" xo="320" yo="140" id="24" depth="-11" scaleX="1" scaleY="1" />
     <tile bgName="Tileset" x="0" y="240" w="80" h="70" xo="0" yo="0" id="25" depth="-12" scaleX="1" scaleY="1" />
     <tile bgName="Tileset" x="80" y="240" w="80" h="70" xo="0" yo="70" id="26" depth="-12" scaleX="1" scaleY="1" />
-    ```
+    ```  
     
     Also, I know the code is incredibly sloppy, and no I have no intentions of cleaning it up...
