@@ -19,10 +19,11 @@ public class Main
   {
     int tileWidth = Integer.parseInt(args[0]);
     int tileHeight = Integer.parseInt(args[1]);
-    int tilesetColumns = Integer.parseInt(args[2]);
-    int tilesetRowHeight = Integer.parseInt(args[3]);
-    String fileString = args[5];
-    int heightOffset = Integer.parseInt(args[4]);
+    String tilesetName = args[2];
+    int tilesetColumns = Integer.parseInt(args[3]);
+    int tilesetRowHeight = Integer.parseInt(args[4]);
+    String fileString = args[6];
+    int heightOffset = Integer.parseInt(args[5]);
     File file = new File(fileString);
     InputStream is = new FileInputStream(file);
     BufferedReader buf = new BufferedReader(new InputStreamReader(is));
@@ -54,7 +55,7 @@ public class Main
         {
           if (toggle)
           {
-            output.append("    <tile bgName=\"Tileset\" x=\"" + (x * tileWidth + tileWidth / 2) + "\" y=\"" + (y * (tileHeight / 2) + heightOffset) + "\"");
+            output.append("    <tile bgName=\""+tilesetName+"\" x=\"" + (x * tileWidth + tileWidth / 2) + "\" y=\"" + (y * (tileHeight / 2) + heightOffset) + "\"");
             System.out.print("x=\"" + (x * tileWidth + tileWidth / 2) + "\" y=\"" + y * (tileHeight / 2) + "\"\n");
           }
           else
