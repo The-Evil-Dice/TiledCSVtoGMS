@@ -27,7 +27,8 @@ Open CMD, use CD commands until you locate the folder with the jar, then use
 That'll make an output.txt file containing all the tiles in that layer for you to simply paste into your room.gmx
 
 Example:
-```    <tile bgName="Tileset" x="0" y="0" w="80" h="70" xo="0" yo="0" id="1" depth="0" scaleX="1" scaleY="1" />
+```
+<tile bgName="Tileset" x="0" y="0" w="80" h="70" xo="0" yo="0" id="1" depth="0" scaleX="1" scaleY="1" />
     <tile bgName="Tileset" x="80" y="0" w="80" h="70" xo="0" yo="70" id="2" depth="0" scaleX="1" scaleY="1" />
     <tile bgName="Tileset" x="40" y="20" w="80" h="70" xo="0" yo="0" id="3" depth="-1" scaleX="1" scaleY="1" />
     <tile bgName="Tileset" x="120" y="20" w="80" h="70" xo="0" yo="70" id="4" depth="-1" scaleX="1" scaleY="1" />
