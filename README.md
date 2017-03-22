@@ -4,7 +4,7 @@
 
 Still does the same thing, but it's got a quickly thrown together GUI now, so just plug the arguments in and press convert.
 
-[Download](../blob/master/TiledCSVtoGMS.jar)
+[Download](../master/TiledCSVtoGMS.jar)
 
 ## Arguments:
 - TileWidth
