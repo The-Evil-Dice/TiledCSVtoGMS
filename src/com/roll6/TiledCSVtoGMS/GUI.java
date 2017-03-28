@@ -111,9 +111,8 @@ public class GUI extends Application {
 
         NodeList layers = root.getElementsByTagName("layer");
         int id = 1;
-        boolean rHeightValue = false;
         for (int i = 1; i <= layers.getLength(); i++) {
-
+            boolean rHeightValue = false;
             StringBuilder output = new StringBuilder();
 
             //System.out.println(layer);
