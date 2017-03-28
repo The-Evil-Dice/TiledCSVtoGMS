@@ -1,6 +1,6 @@
 # TiledCSVtoGMS
 
-##Note:
+## Note:
 After doing more extensive testing on it I've realised that my placement algorithm is innacurate because of something I got wrong early on, it needs a fairly major rework.
 
 [//]:[Download](https://drive.google.com/file/d/0B_bRpsgUligWVHV6N1lIRG81clU/view?usp=sharing)
