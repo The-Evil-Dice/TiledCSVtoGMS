@@ -131,6 +131,10 @@ public class GUI extends Application {
             if (layer.getAttribute("offsety") != "") {
                 heightOffset = Integer.parseInt(layer.getAttribute("offsety"));
             }
+            int widthOffset = 0;
+            if (layer.getAttribute("offsetx") != "") {
+                widthOffset = Integer.parseInt(layer.getAttribute("offsetx"));
+            }
 
             List<String> rows = new ArrayList();
             for (String s : data.getTextContent().split("\\r?\\n")) {
@@ -162,9 +166,9 @@ public class GUI extends Application {
                             yPos += ((r.nextDouble()*8)-16);
                         }
                         if (toggle) {
-                            output.append("    <tile bgName=\"" + ts.name + "\" x=\"" + (x * tileWidth + tileWidth / 2) + "\" y=\"" + yPos + "\"");
+                            output.append("    <tile bgName=\"" + ts.name + "\" x=\"" + ((x * tileWidth + tileWidth / 2) + widthOffset) + "\" y=\"" + yPos + "\"");
                         } else {
-                            output.append("    <tile bgName=\"" + ts.name + "\" x=\"" + x * tileWidth + "\" y=\"" + yPos + "\"");
+                            output.append("    <tile bgName=\"" + ts.name + "\" x=\"" + ((x * tileWidth) + widthOffset) + "\" y=\"" + yPos + "\"");
                         }
                         output.append(" w=\"" + ts.tilewidth + "\" h=\"" + ts.tileheight + "\" ");
                         int yOffset = (Integer.parseInt(contents) - 1) / ts.columns * ts.tileheight;
