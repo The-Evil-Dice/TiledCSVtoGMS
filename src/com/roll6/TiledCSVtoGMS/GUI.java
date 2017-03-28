@@ -102,7 +102,7 @@ public class GUI extends Application {
         for (int i = 1; i <= tilesetsN.getLength(); i++) {
             Element e = (Element) tilesetsN.item(i - 1);
             Tileset t = new Tileset(e.getAttribute("name"), Integer.parseInt(e.getAttribute("tilewidth")),
-                    Integer.parseInt(e.getAttribute("tileheight")), Integer.parseInt(e.getAttribute("tilecount")),
+                    Integer.parseInt(e.getAttribute("tileheight")), Integer.parseInt(e.getAttribute("firstgid"))-1,
                     Integer.parseInt(e.getAttribute("columns")));
             tilesets.add(t);
         }
@@ -112,19 +112,30 @@ public class GUI extends Application {
         NodeList layers = root.getElementsByTagName("layer");
         int id = 1;
         for (int i = 1; i <= layers.getLength(); i++) {
-            boolean rHeightValue = false;
+            boolean rHeight = false;
+            boolean dCorrection = false;
             StringBuilder output = new StringBuilder();
 
             //System.out.println(layer);
             Element layer = (Element) layers.item(i - 1);
             Node data = layer.getElementsByTagName("data").item(0);
             Element properties = (Element) layer.getElementsByTagName("properties").item(0);
-            Element rHeight = null;
-            if(properties != null) {
-                rHeight = (Element) properties.getElementsByTagName("property").item(0);
-            }
-            if (rHeight != null && rHeight.getAttribute("name").toLowerCase().equals("randomisedheight")) {
-                rHeightValue = Boolean.parseBoolean(rHeight.getAttribute("value"));
+            NodeList property = null;
+            if (properties != null) {
+                System.out.println("TEST!!!!");
+                property = properties.getElementsByTagName("property");
+                for(int i2 = 0; i2 < property.getLength(); i2++) {
+                    Element p = (Element) property.item(i2);
+                    if(p.getAttribute("name").equalsIgnoreCase("randomisedheight")) {
+                        rHeight = Boolean.parseBoolean(p.getAttribute("value"));
+                    } else if (p.getAttribute("name").equalsIgnoreCase("depthCorrection")) {
+                        dCorrection = Boolean.parseBoolean(p.getAttribute("value"));
+                        //System.out.println(dCorrection);
+                    } else {
+                        rHeight = false;
+                        dCorrection = false;
+                    }
+                }
             }
 
             int heightOffset = 0;
@@ -140,7 +151,7 @@ public class GUI extends Application {
             for (String s : data.getTextContent().split("\\r?\\n")) {
                 rows.add(s);
             }
-
+            rows.remove(0);
             boolean toggle = false;
             for (int y = 0; y < rows.size(); y++) {
                 String row = (String) rows.get(y);
@@ -154,26 +165,30 @@ public class GUI extends Application {
                     column.add(Integer.valueOf(Integer.parseInt(contents)));
                     Tileset ts = null;
                     for (Tileset ti : tilesets) {
-                        if (ts == null || (ti.tilecount > ts.tilecount && ti.tilecount < Integer.parseInt(contents))) {
+                        if (ts == null || (ti.firstGID > ts.firstGID && ti.firstGID < Integer.parseInt(contents)-1)) {
                             ts = ti;
                         }
                     }
                     int depth = 1000000 + heightOffset;
+                    if(dCorrection) {
+                        depth = -(y * (tileHeight)/2)-10;
+                    }
                     if (Integer.parseInt(contents) != 0) {
-                        int yPos = (y * (tileHeight / 2) + heightOffset);
-                        if(rHeightValue) {
-                            Random r = new Random();
-                            yPos += ((r.nextDouble()*8)-16);
-                        }
+                        System.out.println(y);
+                        int yPos = (y * (tileHeight)/2) + heightOffset;
+                        int xPos = (x * (tileWidth)) + widthOffset;
                         if (toggle) {
-                            output.append("    <tile bgName=\"" + ts.name + "\" x=\"" + ((x * tileWidth + tileWidth / 2) + widthOffset) + "\" y=\"" + yPos + "\"");
-                        } else {
-                            output.append("    <tile bgName=\"" + ts.name + "\" x=\"" + ((x * tileWidth) + widthOffset) + "\" y=\"" + yPos + "\"");
+                            xPos += (tileWidth / 2);
                         }
+                        if (rHeight) {
+                            Random r = new Random();
+                            yPos += ((r.nextDouble() * 16) - 8);
+                        }
+                        output.append("    <tile bgName=\"" + ts.name + "\" x=\"" + xPos + "\" y=\"" + yPos + "\"");
                         output.append(" w=\"" + ts.tilewidth + "\" h=\"" + ts.tileheight + "\" ");
-                        int yOffset = (Integer.parseInt(contents) - 1) / ts.columns * ts.tileheight;
-                        int xOffset = ((Integer.parseInt(contents) - 1) - ts.columns * (yOffset / ts.tileheight)) * ts.tilewidth;
-                        output.append("xo=\"" + xOffset + "\" yo=\"" + yOffset + "\" id=\"" + id + "\" depth=\""+ depth +"\" scaleX=\"1\" scaleY=\"1\" />\r\n");
+                        int yOffset = ((Integer.parseInt(contents) - 1) - (ts.firstGID)) / ts.columns * ts.tileheight;
+                        int xOffset = (((Integer.parseInt(contents) - 1) - (ts.firstGID)) - ts.columns * (yOffset / ts.tileheight)) * ts.tilewidth;
+                        output.append("xo=\"" + xOffset + "\" yo=\"" + yOffset + "\" id=\"" + id + "\" depth=\"" + depth + "\" scaleX=\"1\" scaleY=\"1\" />\r\n");
                         id++;
                     }
                     x++;
@@ -194,13 +209,13 @@ public class GUI extends Application {
         String name;
         int tilewidth;
         int tileheight;
-        int tilecount;
+        int firstGID;
         int columns;
 
         Tileset(String name, int tilewidth, int tileheight, int tilecount, int columns) {
             this.name = name;
             this.columns = columns;
-            this.tilecount = tilecount;
+            this.firstGID = tilecount;
             this.tileheight = tileheight;
             this.tilewidth = tilewidth;
         }
