@@ -1,4 +1,4 @@
-# TiledCSVtoGMS
+# Isometric TMX To GMX
 
 [Download](https://drive.google.com/file/d/0B_bRpsgUligWVHV6N1lIRG81clU/view?usp=sharing)
 
