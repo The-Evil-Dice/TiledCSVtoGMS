@@ -167,7 +167,7 @@ public class GUI extends Application {
                         } else {
                             output.append("    <tile bgName=\"" + ts.name + "\" x=\"" + x * tileWidth + "\" y=\"" + yPos + "\"");
                         }
-                        output.append(" w=\"" + tileWidth + "\" h=\"" + ts.tileheight + "\" ");
+                        output.append(" w=\"" + ts.tilewidth + "\" h=\"" + ts.tileheight + "\" ");
                         int yOffset = (Integer.parseInt(contents) - 1) / ts.columns * ts.tileheight;
                         int xOffset = ((Integer.parseInt(contents) - 1) - ts.columns * (yOffset / ts.tileheight)) * ts.tilewidth;
                         output.append("xo=\"" + xOffset + "\" yo=\"" + yOffset + "\" id=\"" + id + "\" depth=\""+ depth +"\" scaleX=\"1\" scaleY=\"1\" />\r\n");
