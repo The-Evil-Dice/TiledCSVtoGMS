@@ -1,6 +1,6 @@
 # TiledCSVtoGMS
 
-[Download](../master/TiledCSVtoGMS.jar)
+[Download](../master/TMXIsoYtoGMS.jar)
 
 ~~Just a simple command line java tool with arguments to convert y-axis staggered isometric tile layers output to csv by Tiled into Gamemaker Studio 1.4's isometric grid.~~
 
